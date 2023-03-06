@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tzicuri-microservices
+data:
+  port: "2312"
+  #db_host: "mysql8:3306"
+  db_host: "host.minikube.internal:3306"
+  database: microservices_test
+  application.yaml: |-
+    config:
+      texto: Configurando ambiente por defecto
+    ---
+    spring:
+      config:
+        activate:
+          on-profile: dev
+    config:
+      texto: Configurando ambiente de desarrollo
+    ---
+    spring:
+      config:
+        activate:
+          on-profile: prod
+    config:
+      texto: Configurando ambiente de produccion
